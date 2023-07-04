@@ -39,7 +39,7 @@ class _VideoScreenState extends State<VideoScreen> {
                   Container(
                     width: 36,
                     height: 36,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.black,
                     ),
@@ -78,7 +78,7 @@ class _VideoScreenState extends State<VideoScreen> {
                          textAlign: TextAlign.center,
                          maxLines: 1,
                          softWrap: false,
-                         style: TextStyle(
+                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 10,
                           
@@ -91,12 +91,12 @@ class _VideoScreenState extends State<VideoScreen> {
         height:8
         ),
          Padding(
-          padding: EdgeInsets.only(left:16),
+          padding: const EdgeInsets.only(left:16),
           child: Text(
           maxLines:3,
           widget.maintxt,
           textAlign: TextAlign.start,
-          style: TextStyle(
+          style: const TextStyle(
           fontSize: 24,
           color: Colors.white
           ),
@@ -107,67 +107,64 @@ class _VideoScreenState extends State<VideoScreen> {
         height:15
         ),
          Padding(
-          padding: EdgeInsets.only(left:18),
+          padding: const EdgeInsets.only(left:18),
           child: Text(
           maxLines:3,
           widget.contenttxt,
           textAlign: TextAlign.start,
-          style: TextStyle(
+          style: const TextStyle(
           fontSize: 16,
           color: Colors.white
           ),
           
           ),
         ),
-        Container(
-                  //margin: EdgeInsets.only(right:22.0),
-                  child:Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(right:22.0),
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Image.asset('assets/images/heart.png', scale: 1.5)),
-                        ),
-                        const SizedBox(
-                          height:6,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right:20.0),
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              widget.likecount,
-                            
-                            textAlign: TextAlign.end,
-                             style: const TextStyle(
-                            
-                                fontSize: 12, color: Colors.white,fontFamily: 'Poppins-Medium',
-                                fontWeight: FontWeight.normal)),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                       Padding(
-                         padding: const EdgeInsets.only(left:330,right:20.0),
-                         child: Align(
-                          alignment: Alignment.bottomRight,
-                          child: Image.asset('assets/images/bookmark.png', scale: 1.5)),
-                       ),
-                       const SizedBox(
-                          height: 25,
-                        ),
-                       Padding(
-                         padding: const EdgeInsets.only(right:20,bottom:49),
-                         child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Image.asset('assets/images/upload.png', scale: 1.5)),
-                       )  
-                      ]
-                  ),
-                )
+        Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(right:22.0),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Image.asset('assets/images/heart.png', scale: 1.5)),
+              ),
+              const SizedBox(
+                height:6,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right:20.0),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    widget.likecount,
+                  
+                  textAlign: TextAlign.end,
+                   style: const TextStyle(
+                  
+                      fontSize: 12, color: Colors.white,fontFamily: 'Poppins-Medium',
+                      fontWeight: FontWeight.normal)),
+                ),
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+             Padding(
+               padding: const EdgeInsets.only(left:330,right:20.0),
+               child: Align(
+                alignment: Alignment.bottomRight,
+                child: Image.asset('assets/images/bookmark.png', scale: 1.5)),
+             ),
+             const SizedBox(
+                height: 25,
+              ),
+             Padding(
+               padding: const EdgeInsets.only(right:20,bottom:49),
+               child: Align(
+                alignment: Alignment.centerRight,
+                child: Image.asset('assets/images/upload.png', scale: 1.5)),
+             )  
+            ]
+        )
           
         
           ],

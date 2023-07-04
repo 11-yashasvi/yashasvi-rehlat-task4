@@ -8,21 +8,38 @@ class PageViewDemo extends StatefulWidget {
 }
 
 class PageOne extends StatefulWidget {
-  const PageOne({super.key});
+  const PageOne({Key? key}) : super(key: key);
+final ImageProvider _imageProvider = const AssetImage('assets/images/bg.jpg');
 
   @override
   State<PageOne> createState() => _PageOneState();
 }
 
 class _PageOneState extends State<PageOne> {
+  late final ImageProvider _imageProvider;
+  @override
+  void initState() {
+    super.initState();
+    
+    _imageProvider = const AssetImage('assets/images/bg.jpg');
+  }
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(_imageProvider, context);
+  }
+    
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Stack(
         children: <Widget>[
         Container(
-          decoration:  const BoxDecoration(
-            image: DecorationImage(image: AssetImage('assets/images/bg.jpg'),
+          decoration:   BoxDecoration(
+            image: DecorationImage(
+            image: _imageProvider,
             fit:BoxFit.fill ,
             ),
           ),
@@ -55,118 +72,118 @@ class _PageOneState extends State<PageOne> {
        ),
         
         
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left:16, top:193),
-              child: Container(
-                width:90,
-                height:25,
-                decoration: const BoxDecoration(
-                  color:Colors.redAccent,
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.all(Radius.circular(4)),
-                ),
-                child: const Center(
-                  child:  Text(
-                         "'MIDDLE EAST'",
-                         textAlign: TextAlign.center,
-                         maxLines: 1,
-                         softWrap: false,
-                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
-                          
-                         ),
+        Hero(
+          tag: 'page_one',
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left:16, top:193),
+                child: Container(
+                  width:90,
+                  height:25,
+                  decoration: const BoxDecoration(
+                    color:Colors.redAccent,
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.all(Radius.circular(4)),
+                  ),
+                  child: const Center(
+                    child:  Text(
+                           "'MIDDLE EAST'",
+                           textAlign: TextAlign.center,
+                           maxLines: 1,
+                           softWrap: false,
+                           style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            
+                           ),
+                    ),
                   ),
                 ),
               ),
+              const SizedBox(
+          height:8
+          ),
+           const Padding(
+            padding: EdgeInsets.only(left:16),
+            child: Text(
+            maxLines:3,
+            'Top 5 Water Sports That Even Non-Swimmers Can Enjoy In Dubai',
+            textAlign: TextAlign.start,
+            style: TextStyle(
+            fontSize: 24,
+            color: Colors.white
             ),
-            const SizedBox(
-        height:8
-        ),
-         const Padding(
-          padding: EdgeInsets.only(left:16),
-          child: Text(
-          maxLines:3,
-          'Top 5 Water Sports That Even Non-Swimmers Can Enjoy In Dubai',
-          textAlign: TextAlign.start,
-          style: TextStyle(
-          fontSize: 24,
-          color: Colors.white
+            
+            ),
           ),
-          
+          const SizedBox(
+          height:15
           ),
-        ),
-        const SizedBox(
-        height:15
-        ),
-         const Padding(
-          padding: EdgeInsets.only(left:18),
-          child: Text(
-          maxLines:3,
-          'Many holiday goers love Dubai for its pristine white beaches and the unlimited water sports.',
-          textAlign: TextAlign.start,
-          style: TextStyle(
-          fontSize: 16,
-          color: Colors.white
+           const Padding(
+            padding: EdgeInsets.only(left:18),
+            child: Text(
+            maxLines:3,
+            'Many holiday goers love Dubai for its pristine white beaches and the unlimited water sports.',
+            textAlign: TextAlign.start,
+            style: TextStyle(
+            fontSize: 16,
+            color: Colors.white
+            ),
+            
+            ),
           ),
-          
-          ),
-        ),
-        Container(
-                  //margin: EdgeInsets.only(right:22.0),
-                  child:Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(right:22.0),
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Image.asset('assets/images/heart.png', scale: 1.5)),
-                        ),
-                        const SizedBox(
-                          height:6,
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(right:20.0),
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              '1.3k',
-                            
-                            textAlign: TextAlign.end,
-                             style: TextStyle(
-                            
-                                fontSize: 12, color: Colors.white,fontFamily: 'Poppins-Medium',
-                                fontWeight: FontWeight.normal)),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                       Padding(
-                         padding: const EdgeInsets.only(left:330,right:20.0),
-                         child: Align(
-                          alignment: Alignment.bottomRight,
-                          child: Image.asset('assets/images/bookmark.png', scale: 1.5)),
-                       ),
-                       const SizedBox(
-                          height: 25,
-                        ),
-                       Padding(
-                         padding: const EdgeInsets.only(right:20,bottom:49),
-                         child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Image.asset('assets/images/upload.png', scale: 1.5)),
-                       )  
-                      ]
+          Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(right:22.0),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Image.asset('assets/images/heart.png', scale: 1.5)),
+                ),
+                const SizedBox(
+                  height:6,
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(right:20.0),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      '1.3k',
+                    
+                    textAlign: TextAlign.end,
+                     style: TextStyle(
+                    
+                        fontSize: 12, color: Colors.white,fontFamily: 'Poppins-Medium',
+                        fontWeight: FontWeight.normal)),
                   ),
-                )
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+               Padding(
+                 padding: const EdgeInsets.only(left:330,right:20.0),
+                 child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: Image.asset('assets/images/bookmark.png', scale: 1.5)),
+               ),
+               const SizedBox(
+                  height: 25,
+                ),
+               Padding(
+                 padding: const EdgeInsets.only(right:20,bottom:49),
+                 child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Image.asset('assets/images/upload.png', scale: 1.5)),
+               )  
+              ]
+          )
+            
           
-        
-          ],
+            ],
+          ),
         ),
         
         
@@ -179,21 +196,35 @@ class _PageOneState extends State<PageOne> {
 }
 
 class PageTwo extends StatefulWidget {
-  const PageTwo({super.key});
+  const PageTwo({Key? key}) : super(key: key);
+  final ImageProvider _imageProvider = const AssetImage('assets/images/diving.jpg');
 
   @override
   State<PageTwo> createState() => _PageTwoState();
 }
 
 class _PageTwoState extends State<PageTwo> {
+  late final ImageProvider _imageProvider;
+  @override
+  void initState() {
+    super.initState();
+    _imageProvider = const AssetImage('assets/images/diving.jpg');
+    
+  }
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(_imageProvider, context);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Stack(
         children: <Widget>[
         Container(
-          decoration:  const BoxDecoration(
-            image: DecorationImage(image: AssetImage('assets/images/diving.jpg'),
+          decoration:   BoxDecoration(
+            image: DecorationImage(image: _imageProvider,
             fit:BoxFit.fill ,
             ),
           ),
@@ -226,118 +257,118 @@ class _PageTwoState extends State<PageTwo> {
        ),
         
         
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left:16, top:193),
-              child: Container(
-                width:90,
-                height:25,
-                decoration: const BoxDecoration(
-                  color:Colors.redAccent,
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.all(Radius.circular(4)),
-                ),
-                child: const Center(
-                  child:  Text(
-                         "1",
-                         textAlign: TextAlign.center,
-                         maxLines: 1,
-                         softWrap: false,
-                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
-                          
-                         ),
+        Hero(
+          tag:'page_two_hero',
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left:16, top:193),
+                child: Container(
+                  width:90,
+                  height:25,
+                  decoration: const BoxDecoration(
+                    color:Colors.redAccent,
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.all(Radius.circular(4)),
+                  ),
+                  child: const Center(
+                    child:  Text(
+                           "1",
+                           textAlign: TextAlign.center,
+                           maxLines: 1,
+                           softWrap: false,
+                           style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            
+                           ),
+                    ),
                   ),
                 ),
               ),
+              const SizedBox(
+          height:8
+          ),
+           const Padding(
+            padding: EdgeInsets.only(left:16),
+            child: Text(
+            maxLines:3,
+            "Under Water Walking – Walk under the water; come closer to nature in Dubai",          
+            textAlign: TextAlign.start,
+            style: TextStyle(
+            fontSize: 24,
+            color: Colors.white
             ),
-            const SizedBox(
-        height:8
-        ),
-         const Padding(
-          padding: EdgeInsets.only(left:16),
-          child: Text(
-          maxLines:3,
-          "Under Water Walking – Walk under the water; come closer to nature in Dubai",          
-          textAlign: TextAlign.start,
-          style: TextStyle(
-          fontSize: 24,
-          color: Colors.white
+            
+            ),
           ),
-          
+          const SizedBox(
+          height:15
           ),
-        ),
-        const SizedBox(
-        height:15
-        ),
-         const Padding(
-          padding: EdgeInsets.only(left:18),
-          child: Text(
-          maxLines:3,
-          "Many holiday goers love Dubai for its pristine white beaches and the unlimited water sports.",
-          textAlign: TextAlign.start,
-          style: TextStyle(
-          fontSize: 16,
-          color: Colors.white
+           const Padding(
+            padding: EdgeInsets.only(left:18),
+            child: Text(
+            maxLines:3,
+            "Many holiday goers love Dubai for its pristine white beaches and the unlimited water sports.",
+            textAlign: TextAlign.start,
+            style: TextStyle(
+            fontSize: 16,
+            color: Colors.white
+            ),
+            
+            ),
           ),
-          
-          ),
-        ),
-        Container(
-                  //margin: EdgeInsets.only(right:22.0),
-                  child:Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(right:22.0),
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Image.asset('assets/images/heart.png', scale: 1.5)),
-                        ),
-                        const SizedBox(
-                          height:6,
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(right:20.0),
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              '1.3k',
-                            
-                            textAlign: TextAlign.end,
-                             style: TextStyle(
-                            
-                                fontSize: 12, color: Colors.white,fontFamily: 'Poppins-Medium',
-                                fontWeight: FontWeight.normal)),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                       Padding(
-                         padding: const EdgeInsets.only(left:330,right:20.0),
-                         child: Align(
-                          alignment: Alignment.bottomRight,
-                          child: Image.asset('assets/images/bookmark.png', scale: 1.5)),
-                       ),
-                       const SizedBox(
-                          height: 25,
-                        ),
-                       Padding(
-                         padding: const EdgeInsets.only(right:20,bottom:49),
-                         child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Image.asset('assets/images/upload.png', scale: 1.5)),
-                       )  
-                      ]
+          Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(right:22.0),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Image.asset('assets/images/heart.png', scale: 1.5)),
+                ),
+                const SizedBox(
+                  height:6,
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(right:20.0),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      '1.3k',
+                    
+                    textAlign: TextAlign.end,
+                     style: TextStyle(
+                    
+                        fontSize: 12, color: Colors.white,fontFamily: 'Poppins-Medium',
+                        fontWeight: FontWeight.normal)),
                   ),
-                )
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+               Padding(
+                 padding: const EdgeInsets.only(left:330,right:20.0),
+                 child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: Image.asset('assets/images/bookmark.png', scale: 1.5)),
+               ),
+               const SizedBox(
+                  height: 25,
+                ),
+               Padding(
+                 padding: const EdgeInsets.only(right:20,bottom:49),
+                 child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Image.asset('assets/images/upload.png', scale: 1.5)),
+               )  
+              ]
+          )
+            
           
-        
-          ],
+            ],
+          ),
         ),
         
         
@@ -349,21 +380,35 @@ class _PageTwoState extends State<PageTwo> {
   }
 }
 class PageThree extends StatefulWidget {
-  const PageThree({super.key});
+  const PageThree({Key? key}) : super(key: key);
+    final ImageProvider _imageProvider = const AssetImage('assets/images/pungy.jpg');
 
   @override
   State<PageThree> createState() => _PageThreeState();
 }
 
 class _PageThreeState extends State<PageThree> {
+  late final ImageProvider _imageProvider;
+  @override
+  void initState() {
+    super.initState();
+    _imageProvider = const AssetImage('assets/images/pungy.jpg');
+    
+  }
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(_imageProvider, context);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Stack(
         children: <Widget>[
         Container(
-          decoration:  const BoxDecoration(
-            image: DecorationImage(image: AssetImage('assets/images/pungy.jpg'),
+          decoration:   BoxDecoration(
+            image: DecorationImage(image: _imageProvider,
             fit:BoxFit.fill ,
             ),
           ),
@@ -396,118 +441,118 @@ class _PageThreeState extends State<PageThree> {
        ),
         
         
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left:16, top:193),
-              child: Container(
-                width:90,
-                height:25,
-                decoration: const BoxDecoration(
-                  color:Colors.redAccent,
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.all(Radius.circular(4)),
-                ),
-                child: const Center(
-                  child:  Text(
-                         "2",
-                         textAlign: TextAlign.center,
-                         maxLines: 1,
-                         softWrap: false,
-                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
-                          
-                         ),
+        Hero(
+          tag:'page_three_hero',
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left:16, top:193),
+                child: Container(
+                  width:90,
+                  height:25,
+                  decoration: const BoxDecoration(
+                    color:Colors.redAccent,
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.all(Radius.circular(4)),
+                  ),
+                  child: const Center(
+                    child:  Text(
+                           "2",
+                           textAlign: TextAlign.center,
+                           maxLines: 1,
+                           softWrap: false,
+                           style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            
+                           ),
+                    ),
                   ),
                 ),
               ),
+              const SizedBox(
+          height:8
+          ),
+           const Padding(
+            padding: EdgeInsets.only(left:16),
+            child: Text(
+            maxLines:3,
+            "Banana Boat Rides – Fun & frolicon the banana boat!",
+            textAlign: TextAlign.start,
+            style: TextStyle(
+            fontSize: 24,
+            color: Colors.white
             ),
-            const SizedBox(
-        height:8
-        ),
-         const Padding(
-          padding: EdgeInsets.only(left:16),
-          child: Text(
-          maxLines:3,
-          "Banana Boat Rides – Fun & frolicon the banana boat!",
-          textAlign: TextAlign.start,
-          style: TextStyle(
-          fontSize: 24,
-          color: Colors.white
+            
+            ),
           ),
-          
+          const SizedBox(
+          height:15
           ),
-        ),
-        const SizedBox(
-        height:15
-        ),
-         const Padding(
-          padding: EdgeInsets.only(left:18),
-          child: Text(
-          maxLines:3,
-          "Many holiday goers love Dubai for its pristine white beaches and the unlimited water sports.",
-          textAlign: TextAlign.start,
-          style: TextStyle(
-          fontSize: 16,
-          color: Colors.white
+           const Padding(
+            padding: EdgeInsets.only(left:18),
+            child: Text(
+            maxLines:3,
+            "Many holiday goers love Dubai for its pristine white beaches and the unlimited water sports.",
+            textAlign: TextAlign.start,
+            style: TextStyle(
+            fontSize: 16,
+            color: Colors.white
+            ),
+            
+            ),
           ),
-          
-          ),
-        ),
-        Container(
-                  //margin: EdgeInsets.only(right:22.0),
-                  child:Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(right:22.0),
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Image.asset('assets/images/heart.png', scale: 1.5)),
-                        ),
-                        const SizedBox(
-                          height:6,
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(right:20.0),
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              '1.3k',
-                            
-                            textAlign: TextAlign.end,
-                             style: TextStyle(
-                            
-                                fontSize: 12, color: Colors.white,fontFamily: 'Poppins-Medium',
-                                fontWeight: FontWeight.normal)),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                       Padding(
-                         padding: const EdgeInsets.only(left:330,right:20.0),
-                         child: Align(
-                          alignment: Alignment.bottomRight,
-                          child: Image.asset('assets/images/bookmark.png', scale: 1.5)),
-                       ),
-                       const SizedBox(
-                          height: 25,
-                        ),
-                       Padding(
-                         padding: const EdgeInsets.only(right:20,bottom:49),
-                         child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Image.asset('assets/images/upload.png', scale: 1.5)),
-                       )  
-                      ]
+          Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(right:22.0),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Image.asset('assets/images/heart.png', scale: 1.5)),
+                ),
+                const SizedBox(
+                  height:6,
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(right:20.0),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      '1.3k',
+                    
+                    textAlign: TextAlign.end,
+                     style: TextStyle(
+                    
+                        fontSize: 12, color: Colors.white,fontFamily: 'Poppins-Medium',
+                        fontWeight: FontWeight.normal)),
                   ),
-                )
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+               Padding(
+                 padding: const EdgeInsets.only(left:330,right:20.0),
+                 child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: Image.asset('assets/images/bookmark.png', scale: 1.5)),
+               ),
+               const SizedBox(
+                  height: 25,
+                ),
+               Padding(
+                 padding: const EdgeInsets.only(right:20,bottom:49),
+                 child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Image.asset('assets/images/upload.png', scale: 1.5)),
+               )  
+              ]
+          )
+            
           
-        
-          ],
+            ],
+          ),
         ),
         
         
@@ -536,6 +581,7 @@ class _PageViewDemoState extends State<PageViewDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Stack(
         children: [
           PageView.builder(
@@ -547,7 +593,7 @@ class _PageViewDemoState extends State<PageViewDemo> {
             },
             itemCount: _pages.length,
             itemBuilder: (BuildContext context, int index) {
-              return _pages[index % _pages.length];
+              return _pages[index];
             },
           ),
 
