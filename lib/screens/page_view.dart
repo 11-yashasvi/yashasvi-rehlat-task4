@@ -28,8 +28,8 @@ class _PageOneState extends State<PageOne> {
     super.didChangeDependencies();
     precacheImage(_imageProvider, context);
   }
-    
-  
+  //double _sheetTopPosition = 500.0; // Initial position of the bottom sheet
+ // bool _sheetExpanded = false; // Whether the bottom sheet is expanded or collapsed  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -179,13 +179,234 @@ class _PageOneState extends State<PageOne> {
                   child: Image.asset('assets/images/upload.png', scale: 1.5)),
                )  
               ]
-          )
+          ),
+          Container(
+                      width: double.infinity,
+                      
+                      child: Positioned(
+
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            InkWell(
+                              child: Icon(
+                                Icons.keyboard_arrow_up,
+                                color: Colors.grey,
+                                
+                              ),
+                              onTap: ()
+                                {
+                                  showModalBottomSheet<void>(
+                                  isScrollControlled: true,
+                                  enableDrag: true,
+                                  context: context, 
+                                  builder: (BuildContext context){
+                                      return Scaffold(
+                                        body: 
+                                          Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Stack(children:<Widget> [
+                                                Container(
+                                                   height:100,
+                                                   width:400,
+                                                decoration:const BoxDecoration(
+                                                  image: DecorationImage(
+                                                    image: AssetImage("assets/images/forest.jpg"),
+                                                    fit:BoxFit.cover,
+                                                    )
+                                                ),
+                                                //color: Colors.deepOrange,
+                                                ),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(left:16.0, top:50),
+                                                    child: Container(
+                                                      width: 36,
+                                                      height: 36,
+                                                      decoration: const BoxDecoration(
+                                                              shape: BoxShape.circle,
+                                                              color: Colors.black,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const Padding(
+                                                    padding: EdgeInsets.only(left:30,top:60),
+                                                    child: Icon(
+                                                            Icons.arrow_back_ios,
+                                                            color: Colors.white,
+                                                            size: 15,
+                                                    ),
+                                                  )
+                                                         
+                                                                          ]),
+                  const SizedBox(
+                    height:23.9,
+                  ),
+                  
+
+                  Padding(
+                    padding: const EdgeInsets.only(left:16.0),
+                    child: Container(
+                      
+                    width:90,
+                    height:25,
+                    decoration: const BoxDecoration(
+                      color:Colors.redAccent,
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                    ),
+                    child: const Center(
+                      child:  Text(
+                             "MIDDLE EAST",
+                             textAlign: TextAlign.center,
+                             maxLines: 1,
+                             softWrap: false,
+                             style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              
+                             ),
+                      ),
+                    ),
+                                  ),
+                  ), 
+                  const SizedBox(
+                    height:12
+                  ),
+                  const Padding(
+            padding: EdgeInsets.only(left:16),
+            child: Text(
+            maxLines:3,
+            'Top 5 Water Sports That Even Non-Swimmers Can Enjoy In Dubai',
+            textAlign: TextAlign.start,
+            style: TextStyle(
+              fontFamily: 'Poppins-Medium',
+              fontWeight: FontWeight.w600,
+            fontSize: 24,
+            color: Colors.black
+            ),
             
+            ),
+          ),    
+                                            ],
+                                          ),
+                                      
+                                      );
+                            
+                            
+                                    },
+                                  );
+                                },
+                            ),
+                            SizedBox(width: 8.0),
+                            Text(
+                              'Read more',
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),  
           
             ],
           ),
         ),
-        
+        // AnimatedPositioned(
+        //     duration: Duration(milliseconds: 300),
+        //     curve: Curves.easeInOut,
+        //     left: 0,
+        //     right: 0,
+        //     top: _sheetTopPosition,
+        //     height: MediaQuery.of(context).size.height - _sheetTopPosition,
+        //     child: GestureDetector(
+        //       onTap: () {
+        //         setState(() {
+        //           // Toggle between expanded and collapsed states
+        //           _sheetExpanded = !_sheetExpanded;
+        //           _sheetTopPosition = _sheetExpanded ? 0.0 : 1.0;
+        //         });
+        //       },
+        //       child: Container(
+        //         decoration: BoxDecoration(
+        //           //color: Colors.white,
+                  
+        //           borderRadius: BorderRadius.only(
+        //             topLeft: Radius.circular(16.0),
+        //             topRight: Radius.circular(16.0),
+        //           ),
+        //           boxShadow: [
+        //             BoxShadow(
+        //               color: Colors.black.withOpacity(0.1),
+        //               blurRadius: 6.0,
+        //               // offset: Offset(0, -3),
+        //               offset:Offset.zero,
+        //               blurStyle: BlurStyle.normal,
+        //             ),
+        //           ],
+        //         ),
+        //         child: Column(
+        //           children: [
+        //             // Drag handle with arrow and text
+        //             Container(
+        //               width: double.infinity,
+        //               padding: const EdgeInsets.all(16.0),
+        //               child: Row(
+        //                 mainAxisAlignment: MainAxisAlignment.center,
+        //                 children: [
+        //                   Icon(
+        //                     Icons.keyboard_arrow_up,
+        //                     color: Colors.grey,
+        //                   ),
+        //                   SizedBox(width: 8.0),
+        //                   Text(
+        //                     'Read more',
+        //                     style: TextStyle(
+        //                       fontSize: 18.0,
+        //                       color: Colors.white,
+        //                     ),
+        //                   ),
+        //                 ],
+        //               ),
+        //             ),
+        //             // Content of the bottom sheet
+        //             Expanded(
+        //               child: SingleChildScrollView(
+        //                 child: 
+        //                 AppBar(actions: <Widget>[
+        //                   Stack(children: [
+        //           Container(
+        //             width: 36,
+        //             height: 36,
+        //             decoration: const BoxDecoration(
+        //               shape: BoxShape.circle,
+        //               color: Colors.black,
+        //             ),
+        //           ),
+        //           const Positioned(
+        //             top: 0,
+        //             bottom: 0,
+        //             left: 5,
+        //             right: 0,
+        //             child: Icon(
+        //               Icons.arrow_back_ios,
+        //               color: Colors.white,
+        //               size: 15,
+        //             ),
+        //           )
+
+        //                   ],),
+        //                   ]),
+                        
+        //               ),
+        //             ),
+        //           ],
+        //         ),
+        //       ),
+        //     ),
+        //   ),
         
         ],
       ),
